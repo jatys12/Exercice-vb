@@ -1,0 +1,40 @@
+Module exercice72
+
+    Sub Main()
+
+        Dim essence As Double
+        Dim diesel As Double
+        Dim jours As Double
+        Dim km As Double
+
+        Console.WriteLine("Nombre de jours de location:")
+
+        jours = Console.ReadLine()
+
+        Console.WriteLine("distance à parcourir (km) :")
+
+        km = Console.ReadLine()
+
+        essence = 30 * jours + 0.85 * km
+        diesel = 35 * jours + 0.65 * km
+
+        If (diesel < essence) Then
+
+            Console.WriteLine("Meilleur choix : diesel")
+
+        ElseIf (essence < diesel) Then
+
+            Console.WriteLine("Meilleur choix : essence")
+
+        Else
+            Console.WriteLine("Même prix")
+
+        End If
+
+        Console.WriteLine("Au revoir")
+
+        Console.ReadLine()
+
+    End Sub
+
+End Module

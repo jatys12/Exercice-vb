@@ -1,0 +1,65 @@
+Module Exercice91
+
+    Sub Main()
+    
+        Dim note, somme, pourcentageSup10, moyenne, totalNotes, countSup10 As Double
+
+        totalNotes = 0
+
+        countSup10 = 0
+
+        somme = 0
+
+        While note <> -1
+
+            Console.WriteLine("Entrez une note (-1 pour fin) :")
+
+            note = Console.ReadLine()
+
+            If note <> -1 Then
+
+                somme += note
+
+                totalNotes += 1
+
+
+                If note > 10 Then
+
+                    countSup10 += 1
+
+                End If
+
+            End If
+
+        End While
+
+
+        If totalNotes > 0 Then
+
+            moyenne = somme / totalNotes
+
+        Else
+
+            moyenne = 0
+
+        End If
+
+
+        If totalNotes > 0 Then
+
+            pourcentageSup10 = (countSup10 / totalNotes) * 100
+
+        Else
+
+            pourcentageSup10 = 0
+
+        End If
+
+
+        Console.WriteLine("Vous avez " + pourcentageSup10.ToString + "% de notes > à 10")
+
+        Console.WriteLine("Votre moyenne est de " + moyenne.ToString)
+
+    End Sub
+    
+End Module

@@ -1,0 +1,58 @@
+Module exercice73
+
+    Sub Main()
+
+        Dim heures As Double
+        Dim salaire As Double
+        Dim tauxhoraire As Double
+        Dim horaire As Double
+        Dim heuresup As Double
+        Dim heuresup2 As Double
+
+        salaire = 0
+
+        Console.WriteLine("Nombre d'heures travaillées hebdomadaire ?")
+
+        heures = Console.ReadLine()
+
+        If (heures < 39) Then
+
+            Console.WriteLine("Taux horaire")
+
+            tauxhoraire = Console.ReadLine()
+
+            salaire = heures * tauxhoraire
+
+        ElseIf (heures <= 47) Then
+
+            heuresup = heures - 39
+
+            Console.WriteLine("Taux horaire ?")
+
+            tauxhoraire = Console.ReadLine()
+
+            salaire = 39 * tauxhoraire * heuresup * (tauxhoraire * 125 / 100)
+
+        Else
+
+            heuresup2 = heures - 47
+
+            heuresup = heures - 39 - heuresup2
+
+            Console.WriteLine("Tauxhoraire ?")
+
+            tauxhoraire = Console.ReadLine()
+
+            salaire = 39 * tauxhoraire + heuresup * (tauxhoraire * 125 / 100) + heuresup2 * (tauxhoraire * 150 / 100)
+
+        End If
+
+        Console.WriteLine("Salaire hebdomadaire : " + salaire.ToString)
+
+        Console.WriteLine("Au revoir")
+
+        Console.ReadLine()
+
+    End Sub
+
+End Module

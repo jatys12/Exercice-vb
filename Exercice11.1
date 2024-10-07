@@ -1,0 +1,86 @@
+Module Module1 Exercice11.1
+    Sub Main()
+        Dim choix As Integer
+
+        Do
+            ' Affichage du menu
+            Console.WriteLine("1. Calcul du périmètre d'un cercle.")
+            Console.WriteLine("2. Calcul de la surface d'un cercle.")
+            Console.WriteLine("3. Calcul du périmètre d'un rectangle.")
+            Console.WriteLine("4. Calcul de la surface d'un rectangle.")
+            Console.WriteLine("5. Quitter.")
+            Console.Write("Choix ? ")
+
+            ' Lecture du choix
+            choix = Convert.ToInt32(Console.ReadLine())
+
+            Select Case choix
+                Case 1
+                    Dim rayon As Double = DemanderRayon()
+                    Dim perimetre As Double = PérimètreCercle(rayon)
+                    Console.WriteLine("Périmètre: " & perimetre)
+                Case 2
+                    Dim rayonSurface As Double = DemanderRayon()
+                    Dim surface As Double = SurfaceCercle(rayonSurface)
+                    Console.WriteLine("Surface: " & surface)
+                Case 3
+                    Dim longueur As Double = DemanderDimension("Longueur")
+                    Dim largeur As Double = DemanderDimension("Largeur")
+                    Dim perimetreRect As Double = PérimètreRectangle(longueur, largeur)
+                    Console.WriteLine("Périmètre: " & perimetreRect)
+                Case 4
+                    Dim longueurSurface As Double = DemanderDimension("Longueur")
+                    Dim largeurSurface As Double = DemanderDimension("Largeur")
+                    Dim surfaceRect As Double = SurfaceRectangle(longueurSurface, largeurSurface)
+                    Console.WriteLine("Surface: " & surfaceRect)
+                Case 5
+                    Console.WriteLine("Au revoir")
+                    Exit Do
+                Case Else
+                    Console.WriteLine("Choix erroné.")
+            End Select
+
+            Console.WriteLine(". . . Rappel menu . . .")
+        Loop
+    End Sub
+
+    Function DemanderRayon() As Double
+        Dim rayon As Double
+        Do
+            Console.Write("Rayon du cercle ? (Rayon > 0) ")
+            rayon = Convert.ToDouble(Console.ReadLine())
+            If rayon <= 0 Then
+                Console.WriteLine("Rayon > 0")
+            End If
+        Loop While rayon <= 0
+        Return rayon
+    End Function
+
+    Function DemanderDimension(nom As String) As Double
+        Dim dimension As Double
+        Do
+            Console.Write(nom & " du rectangle (" & nom & " > 0) ")
+            dimension = Convert.ToDouble(Console.ReadLine())
+            If dimension <= 0 Then
+                Console.WriteLine(nom & " > 0")
+            End If
+        Loop While dimension <= 0
+        Return dimension
+    End Function
+
+    Function PérimètreCercle(ByVal pRayon As Double) As Double
+        Return 2 * Math.PI * pRayon
+    End Function
+
+    Function SurfaceCercle(ByVal pRayon As Double) As Double
+        Return Math.PI * Math.Pow(pRayon, 2)
+    End Function
+
+    Function PérimètreRectangle(ByVal pLongueur As Double, ByVal pLargeur As Double) As Double
+        Return 2 * (pLongueur + pLargeur)
+    End Function
+
+    Function SurfaceRectangle(ByVal pLongueur As Double, ByVal pLargeur As Double) As Double
+        Return pLongueur * pLargeur
+    End Function
+End Module

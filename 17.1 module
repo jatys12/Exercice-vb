@@ -1,0 +1,14 @@
+Module Module1
+    Sub Main()
+        Dim compteur As New Compteur(10)
+        Console.WriteLine("Valeur initiale : " & compteur.GetValeur())
+        compteur.PlusUn()
+        Console.WriteLine("Après PlusUn() : " & compteur.GetValeur())
+        compteur.IncrementeDe(5)
+        Console.WriteLine("Après IncrementeDe(5) : " & compteur.GetValeur())
+        compteur.DecrementeDe(3)
+        Console.WriteLine("Après DecrementeDe(3) : " & compteur.GetValeur())
+        compteur.Raz()
+        Console.WriteLine("Après Raz() : " & compteur.GetValeur())
+    End Sub
+End Module

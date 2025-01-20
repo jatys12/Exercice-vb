@@ -1,0 +1,48 @@
+Module Module1
+    Sub Main()
+        Dim monCompteur As New Compteur(10)
+        Console.WriteLine("Valeur initiale : " & monCompteur.GetValeur())
+        monCompteur.PlusUn()
+        Console.WriteLine("Après PlusUn : " & monCompteur.GetValeur())
+        monCompteur.Raz()
+        Console.WriteLine("Après Raz : " & monCompteur.GetValeur())
+        monCompteur.IncrementeDe(5)
+        Console.WriteLine("Après IncrementeDe(5) : " & monCompteur.GetValeur())
+        monCompteur.DecrementeDe(3)
+        Console.WriteLine("Après DecrementeDe(3) : " & monCompteur.GetValeur())
+        monCompteur.IncrementeDe(-2)
+        Console.WriteLine("Après tentative d'IncrementeDe(-2) : " & monCompteur.GetValeur())
+        monCompteur.DecrementeDe(-2)
+        Console.WriteLine("Après tentative de DecrementeDe(-2) : " & monCompteur.GetValeur())
+        Console.ReadLine()
+    End Sub
+End Module
+
+
+
+
+Public Class Compteur
+    Private valeur As Integer
+    Public Sub New(nouvValeur As Integer)
+        valeur = nouvValeur
+    End Sub
+    Public Function GetValeur() As Integer
+        Return valeur
+    End Function
+    Public Sub PlusUn()
+        valeur += 1
+    End Sub
+    Public Sub Raz()
+        valeur = 0
+    End Sub
+    Public Sub IncrementeDe(pValeur As Integer)
+        If pValeur > 0 Then
+            valeur += pValeur
+        End If
+    End Sub
+    Public Sub DecrementeDe(pValeur As Integer)
+        If pValeur > 0 Then
+            valeur -= pValeur
+        End If
+    End Sub
+End Class

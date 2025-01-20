@@ -1,0 +1,220 @@
+Module Module17_2
+    Sub Main()
+        Console.WriteLine("//////// TEST CLASSE ENSEIGNANT /////////")
+        Dim enseignant As New Enseignant("E0112", "Dupont", "Pierre", "1, rue de la Paix - 75000 PARIS", "0145045540", "1/10/1980", 8, 20)
+        Console.WriteLine("SORTIE méthode ToString()")
+        Console.WriteLine(enseignant.ToStringSimple())
+        Console.WriteLine("FIN SORTIE méthode ToString()")
+        Console.WriteLine($"Salaire Mensuel : {enseignant.SalaireMensuel()}")
+        Console.WriteLine("On fait passer l'indice à 2 (contre 8 précédemment)")
+        If Not enseignant.AugmenterIndice(2) Then
+            Console.WriteLine("L'indice ne peut être baissé.")
+        End If
+        Console.WriteLine("On fait passer l'indice à 10 (contre 8 précédemment)")
+        If enseignant.AugmenterIndice(10) Then
+            Console.WriteLine("Augmentation d'indice enregistrée.")
+        End If
+        Console.WriteLine($"Indice : {enseignant.GetIndice()}")
+        Console.WriteLine($"Salaire Mensuel : {enseignant.SalaireMensuel()}")
+        Console.WriteLine("//////// TEST CLASSE ELEVE /////////")
+        Dim eleve As New Eleve("112", "Martin", "Pierre", "7, rue de la Paix 77000 MELUN", "0164024532", "23/07/02", "BTSSIO1")
+        Console.WriteLine("SORTIE méthode ToString()")
+        Console.WriteLine(eleve.ToStringSimple())
+        Console.WriteLine("FIN SORTIE méthode ToString()")
+        eleve.SetNote(0, 12)
+        eleve.SetNote(1, 10)
+        eleve.SetNote(2, 15)
+        eleve.SetNote(3, 8)
+        eleve.SetNote(4, 14)
+        Console.WriteLine($"Moyenne générale de {eleve.GetNom()}, {eleve.GetPrenom()} : {eleve.Moyenne()}")
+    End Sub
+End Module
+
+
+
+
+
+Public Class Enseignant
+    Const VALEURINDICE As Double = 13.754
+    Private numero As String
+    Private nom As String
+    Private prenom As String
+    Private adresse As String
+    Private numTel As String
+    Private dateNaiss As String
+    Private indice As Integer
+    Private nombreDHeures As Double
+    Public Sub New(numero As String, nom As String, prenom As String, adresse As String, numTel As String, dateNaiss As String, indice As Integer, nombreDHeures As Double)
+        numero = numero
+        nom = nom
+        prenom = prenom
+        adresse = adresse
+        numTel = numTel
+        dateNaiss = dateNaiss
+        indice = indice
+        nombreDHeures = nombreDHeures
+    End Sub
+    Public Function GetNuméro() As String
+        Return numero
+    End Function
+    Public Function GetNom() As String
+        Return nom
+    End Function
+    Public Function GetPrenom() As String
+        Return prenom
+    End Function
+    Public Function GetNumTel() As String
+        Return numTel
+    End Function
+    Public Function GetAdresse() As String
+        Return adresse
+    End Function
+    Public Function GetDateNaiss() As String
+        Return dateNaiss
+    End Function
+    Public Function GetIndice() As Integer
+        Return indice
+    End Function
+    Public Function GetNombreDHeures() As Double
+        Return nombreDHeures
+    End Function
+    Public Sub SetNom(nouvNom As String)
+        nom = nouvNom
+    End Sub
+    Public Sub SetPrenom(nouvPrenom As String)
+        prenom = nouvPrenom
+    End Sub
+    Public Sub SetNumTel(nouvNumTel As String)
+        numTel = nouvNumTel
+    End Sub
+    Public Sub SetAdresse(nouvAdresse As String)
+        adresse = nouvAdresse
+    End Sub
+    Public Sub SetNombreDHeures(nouvNombreDHeures As Double)
+        If nouvNombreDHeures >= 0 Then
+            nombreDHeures = nouvNombreDHeures
+        End If
+    End Sub
+    Public Function AugmenterIndice(nouvIndice As Integer) As Boolean
+        If nouvIndice < indice Then
+            Return False
+        End If
+        indice = nouvIndice
+        Return True
+    End Function
+    Public Function SalaireMensuel() As Double
+        Return nombreDHeures * indice * VALEURINDICE
+    End Function
+    Public Function ToStringSimple() As String
+        Return "Numéro : " + numero + vbCrLf +
+               "Nom : " + nom + vbCrLf +
+               "Prénom : " + prenom + vbCrLf +
+               "Adresse : " + adresse + vbCrLf +
+               "n° de téléphone : " + numTel + vbCrLf +
+               "Date de naissance : " + dateNaiss + vbCrLf +
+               "Indice : " + indice + vbCrLf +
+               "Nombre d'heures : " + nombreDHeures
+    End Function
+End Class
+
+
+
+
+
+Public Class Eleve
+    Const MAXNOTES As Integer = 9
+    Private numero As String
+    Private nom As String
+    Private prenom As String
+    Private adresse As String
+    Private numTel As String
+    Private dateNaiss As String
+    Private numClasse As String
+    Private tabNotes(MAXNOTES - 1) As Double
+    Public Sub New(numero As String, nom As String, prenom As String, adresse As String, numTel As String, dateNaiss As String, numClasse As String)
+        numero = numero
+        nom = nom
+        prenom = prenom
+        adresse = adresse
+        numTel = numTel
+        dateNaiss = dateNaiss
+        numClasse = numClasse
+        For i As Integer = 0 To MAXNOTES - 1
+            tabNotes(i) = -1
+        Next
+    End Sub
+    Public Function GetNuméro() As String
+        Return numero
+    End Function
+    Public Function GetNom() As String
+        Return nom
+    End Function
+    Public Function GetPrenom() As String
+        Return prenom
+    End Function
+    Public Function GetNumTel() As String
+        Return numTel
+    End Function
+    Public Function GetAdresse() As String
+        Return adresse
+    End Function
+    Public Function GetDateNaiss() As String
+        Return dateNaiss
+    End Function
+    Public Function GetNumClasse() As String
+        Return numClasse
+    End Function
+    Public Sub SetNom(nouvNom As String)
+        nom = nouvNom
+    End Sub
+    Public Sub SetPrenom(nouvPrenom As String)
+        prenom = nouvPrenom
+    End Sub
+    Public Sub SetNumTel(nouvNumTel As String)
+        numTel = nouvNumTel
+    End Sub
+    Public Sub SetAdresse(nouvAdresse As String)
+        adresse = nouvAdresse
+    End Sub
+    Public Sub SetNumClasse(nouvNumClasse As String)
+        numClasse = nouvNumClasse
+    End Sub
+    Public Sub SetNote(noMatiere As Integer, note As Double)
+        If noMatiere >= 0 And noMatiere < MAXNOTES Then
+            tabNotes(noMatiere) = note
+        End If
+    End Sub
+    Public Function Moyenne() As Double
+        Dim somme As Double = 0
+        Dim count As Integer = 0
+        For i As Integer = 0 To MAXNOTES - 1
+            If tabNotes(i) <> -1 Then
+                somme += tabNotes(i)
+                count += 1
+            End If
+        Next
+        If count = 0 Then
+            Return -1
+        End If
+        Return somme / count
+    End Function
+    Public Function ToStringSimple() As String
+        Dim notes As String = ""
+        For i As Integer = 0 To MAXNOTES - 1
+            notes = tabNotes(i) + " | "
+        Next
+        If Moyenne() = -1 Then
+            notes = "Aucune note: impossible de calculer la moyenne generale."
+        Else
+            notes = "Moyenne générale : " + Moyenne()
+        End If
+        Return "Numéro : " + numero + vbCrLf +
+               "Nom: " + nom + vbCrLf +
+               "Prénom: " + prenom + vbCrLf +
+               "Adresse: " + adresse + vbCrLf +
+               "n° de téléphone: " + numTel + vbCrLf +
+               "Date de naissance: " + dateNaiss + vbCrLf +
+               "n° de la Classe : " + numClasse + vbCrLf +
+               "Notes : " + notes
+    End Function
+End Class
